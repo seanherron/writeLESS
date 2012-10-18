@@ -1,0 +1,147 @@
+/* ==========================================================================
+   
+	*****
+	writeLESS
+	Created by Sean Herron <seanherron@gmail.com>
+	Inspired by helpLESS
+	*****
+	
+	Copyright (C) 2012 Sean Herron
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+   ========================================================================== */
+
+
+#w {
+	// ==========================================================================
+	//   Page/Generic Styling
+	// ==========================================================================
+		
+	
+	.clearfix() {
+		// Use #w.clearfix(); inside the parent of any element you wish to apply a clearfix to.
+		// See: http://www.m6tt.com/2011/09/22/a-less-approach-to-clearfix
+	  zoom: 1;
+	  &:before { content: ''; display: block; }
+	  &:after { content: ''; display: table; clear: both; }
+	}
+	
+	// ==========================================================================
+	//   Element Visual Stylings (Radius, Shadows, Gradients, Etc)
+	// ==========================================================================
+	
+	
+	//BORDER RADIUS
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/border-radius
+	//// Use #w.border-radius(); on any elements you wish to give border radiuses to. The default is 5px. To use a different radius, define border-radius as follows:
+	//// ==
+	//// #w.border-radius(2em);
+	//// ==
+		.border-radius (@r: 5px) {
+			-webkit-border-radius:@arguments;
+			border-radius:@arguments;
+			-moz-background-clip:padding;
+			-webkit-background-clip:padding-box;
+			background-clip:padding-box;
+		}
+
+	//DROP SHADOW
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/box-shadow
+	//// Use #w.drop-shadow(); on any elements you wish to give a drop shadow to. To ovverride defaults, use the following syntax:
+	//// ==
+	//// #w.drop-shadow( horizontal, vertical, blur, spread, color)
+	//// #w.drop-shadow( 2px, 5px, 3px, 1px, #fff);
+	//// ==
+		.drop-shadow (@x: 1px, @y: 1px, @blur: 1px, @spread: 1px, @color: #000 ) {
+			-webkit-box-shadow: @arguments;
+			-moz-box-shadow:@arguments;
+			box-shadow: @arguments;
+		}
+	
+	//INSET SHADOW
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/box-shadow
+	//// Use #w.inset-shadow(); on any elements you wish to give an inset shadow to. To ovverride defaults, use the following syntax:
+	//// ==
+	//// #w.inset-shadow( horizontal, vertical, blur, spread, color)
+	//// #w.inset-shadow( 2px, 5px, 3px, 1px, #fff);
+	//// ==
+	.inset-shadow (@x: 1px, @y: 1px, @blur: 1px, @spread: 1px, @color: #000 ) {
+		-webkit-box-shadow: inset @arguments;
+		-moz-box-shadow: inset @arguments;
+		box-shadow: inset @arguments;
+	}
+	
+	//TEXT SHADOW
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/text-shadow
+	//// Use #w.text-shadow(); on any text elements you wish to give a shadow to. To ovverride defaults, use the following syntax:
+	//// ==
+	//// #w.text-shadow( horizontal, vertical, blur, color)
+	//// #w.text-shadow( 2px, 5px, 3px, #fff);
+	//// ==
+		.text-shadow(@x: 1px, @y: 1px, @blur: 1px, @color: #000) {
+			text-shadow: @arguments;
+		  }
+	
+	//BACKGROUND GRADIENT
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/linear-gradient
+	//// Use #w.background-gradient(); on any text elements you wish to give a shadow to. To ovverride defaults, use the following syntax:
+	//// ==
+	//// #w.background-gradient( color-from, color-to, fallback-color, fallback-image-url)
+	//// #w.background-gradient( #fff, #000, #ccc, ../img/background.png)
+	//// ==
+	
+	.background-gradient(@colorfrom: #bbb, @colorTo: #f1f1f1, @fallbackcolor: #f1f1f1, @fallbackImageUrl: '') {
+		background-color: @fallbackcolor;
+		background-image: url("@fallbackImage");
+		background-repeat: no-repeat;
+		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@colorfrom), to(@colorTo));
+		background-image: -webkit-linear-gradient(bottom, @colorfrom, @colorTo);
+		background-image: -moz-linear-gradient(bottom, @colorfrom, @colorTo);
+		background-image: -ms-linear-gradient(bottom, @colorfrom, @colorTo);
+		background-image: -o-linear-gradient(bottom, @colorfrom, @colorTo);
+		/* For Internet Explorer 5.5 - 7 */
+		filter: ~'progid:DXImageTransform.Microsoft.gradient(startColorstr=@colorfrom, endColorstr=@colorTo)';
+		/* For Internet Explorer 8 and newer */
+		-ms-filter: ~'"progid:DXImageTransform.Microsoft.gradient(startColorstr=@colorfrom, endColorstr=@colorTo)"';
+	  }
+	
+	
+	// ==========================================================================
+	//   Background Effects
+	// ==========================================================================
+	
+	//BACKGROUND SIZE
+	//// See: https://developer.mozilla.org/en-US/docs/CSS/background-size
+	//// Use #w.background-size(); to define the relative size of the background image.
+	//// ==
+	//// #w.background-size(size size)
+	//// #w.background-size( 50% 75%);
+	//// #w.background-size(cover);
+	//// ==
+	
+	.background-size (@size: 100% 100%) {
+		-webkit-background-size: @size;
+		-moz-background-size: @size;
+		-o-background-size: @size;
+		background-size:@size;
+	}
+	
+	// ==========================================================================
+	//   2D and 3D Effects
+	// ==========================================================================
+	
+	//Rotation Effects
+	.rotate(@degrees: 90deg) {
+	    transform:rotate(@degrees);
+	    -ms-transform:rotate(@degrees);
+	    -moz-transform:rotate(@degrees);
+	    -webkit-transform:rotate(@degrees);
+	    -o-transform:rotate(@degrees);
+	  }
+	
+}
